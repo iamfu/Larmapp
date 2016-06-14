@@ -8,15 +8,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
 import android.view.Window;
 
 
-public class SplashScreen extends Activity {
+public class SplashScreenActivity extends Activity {
     private Handler handler;
     private Runnable runnable;
     private long delay_times;
-    private long times =2000L;
+    private long times =3000L;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -27,7 +26,7 @@ public class SplashScreen extends Activity {
         runnable = new Runnable() {
             @Override
             public void run() {// รันหน้า splashscreen
-                Intent intent = new Intent(SplashScreen.this,MainActivity.class);
+                Intent intent = new Intent(SplashScreenActivity.this,LoginscreenActivity.class);
                 startActivity(intent);
                 finish();
             }
