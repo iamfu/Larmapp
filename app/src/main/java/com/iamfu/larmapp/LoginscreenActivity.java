@@ -9,14 +9,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
+import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import java.util.Arrays;
 
 /**
  * Created by nattha on 6/3/16 AD.
@@ -27,8 +31,9 @@ public class LoginscreenActivity extends AppCompatActivity {
     private TextView mTextDetails;
 
     public LoginscreenActivity() {}
-    CallbackManager callbackManager;
-
+    private CallbackManager callbackManager;
+    private AccessTokenTracker accessTokenTracker;
+    private ProfileTracker profileTracker;
     private FacebookCallback mCallback = new FacebookCallback<LoginResult>() {
         @Override
         public void onSuccess(LoginResult loginResult) {
@@ -63,6 +68,15 @@ public class LoginscreenActivity extends AppCompatActivity {
 
         callbackManager = CallbackManager.Factory.create();
 
+        profileTracker = new ProfileTracker() {
+            @Override
+            protected void onCurrentProfileChanged(
+                    Profile oldProfile,
+                    Profile currentProfile) {
+                // App code
+            }
+        };
+
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override
@@ -80,6 +94,18 @@ public class LoginscreenActivity extends AppCompatActivity {
                         // App code
                     }
                 });
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "user_friends"));
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(
+                    AccessToken oldAccessToken,
+                    AccessToken currentAccessToken) {
+                // Set the access token using
+                // currentAccessToken when it's loaded or set.
+            }
+        };
+        // If the access token is available already assign it.
+        //accessToken = AccessToken.getCurrentAccessToken();
     }
 
     @Override
@@ -133,7 +159,10 @@ public class LoginscreenActivity extends AppCompatActivity {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-
-
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        accessTokenTracker.stopTracking();
+        profileTracker.stopTracking();
+    }
 }
