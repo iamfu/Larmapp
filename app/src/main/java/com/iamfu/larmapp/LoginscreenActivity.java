@@ -29,8 +29,6 @@ public class LoginscreenActivity extends AppCompatActivity {
 
 
     private TextView mTextDetails;
-
-    public LoginscreenActivity() {}
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
     private ProfileTracker profileTracker;
@@ -41,6 +39,8 @@ public class LoginscreenActivity extends AppCompatActivity {
             Profile profile = Profile.getCurrentProfile();
             displayWelcomeMessage(profile);
 
+            Intent intent = new Intent(HomeActivity.ACTIVITY_SERVICE);
+            startActivity(intent);
         }
 
         @Override
@@ -54,6 +54,9 @@ public class LoginscreenActivity extends AppCompatActivity {
         }
     };
 
+    public LoginscreenActivity() {
+    }
+
     private void displayWelcomeMessage(Profile profile) {
         if (profile != null) {
             mTextDetails.setText("Welcome " + profile.getName());
@@ -65,6 +68,8 @@ public class LoginscreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         setContentView(R.layout.loginscreen);
+
+        mTextDetails = (TextView) findViewById(R.id.welcomeText);
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -82,6 +87,8 @@ public class LoginscreenActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         // App code
+                        Intent intent = new Intent(LoginscreenActivity.this,HomeActivity.class);
+                        startActivity(intent);
                     }
 
                     @Override
@@ -124,7 +131,6 @@ public class LoginscreenActivity extends AppCompatActivity {
 
         View view = inflater.inflate(R.layout.loginscreen, container, false);
         LoginButton loginButton = (LoginButton) view.findViewById(R.id.login_button);
-        loginButton = (LoginButton) view.findViewById(R.id.login_button);
         loginButton.setReadPermissions("user_friends");
         // If using in a fragment
 
@@ -137,6 +143,9 @@ public class LoginscreenActivity extends AppCompatActivity {
                 AccessToken accessToken = loginResult.getAccessToken();
                 Profile profile = Profile.getCurrentProfile();
                 displayWelcomeMessage(profile);
+
+                Intent intent = new Intent(LoginscreenActivity.this,HomeActivity.class);
+                startActivity(intent);
             }
 
             @Override
