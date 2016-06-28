@@ -4,9 +4,15 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
 
+    dataBinding {
+        enabled true
+    }
+
     repositories {
         mavenCentral()
     }
+
+
 
     defaultConfig {
         applicationId "com.iamfu.larmapp"
@@ -31,6 +37,7 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:4.5.0'
 
 
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }
 
 

@@ -1,13 +1,12 @@
 package com.iamfu.larmapp;
-
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -19,18 +18,29 @@ import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.iamfu.larmapp.databinding.LoginscreenBinding;
 
 import java.util.Arrays;
 
 /**
  * Created by nattha on 6/3/16 AD.
  */
-public class LoginscreenActivity extends AppCompatActivity {
+public class LoginscreenActivity extends FragmentActivity {
 
-
+    LoginscreenBinding binding;
     private TextView mTextDetails;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
-    public LoginscreenActivity() {}
+
+    public LoginscreenActivity() {
+    }
+
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
     private ProfileTracker profileTracker;
@@ -39,33 +49,27 @@ public class LoginscreenActivity extends AppCompatActivity {
         public void onSuccess(LoginResult loginResult) {
             AccessToken accessToken = loginResult.getAccessToken();
             Profile profile = Profile.getCurrentProfile();
-            displayWelcomeMessage(profile);
+
 
         }
 
         @Override
-        public void onCancel() {
-
-        }
+        public void onCancel() {}
 
         @Override
-        public void onError(FacebookException error) {
-
-        }
+        public void onError(FacebookException error) {}
     };
 
-    private void displayWelcomeMessage(Profile profile) {
-        if (profile != null) {
-            mTextDetails.setText("Welcome " + profile.getName());
-        }
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(this.getApplicationContext());
-        setContentView(R.layout.loginscreen);
-
+        binding = DataBindingUtil.setContentView(this,R.layout.loginscreen);
+        binding.appname.getText();
+        //set textcolor
+        binding.appname.setTextColor(getResources().getColor(R.color.textColors));
         callbackManager = CallbackManager.Factory.create();
 
         profileTracker = new ProfileTracker() {
@@ -76,7 +80,6 @@ public class LoginscreenActivity extends AppCompatActivity {
                 // App code
             }
         };
-
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override
@@ -106,37 +109,28 @@ public class LoginscreenActivity extends AppCompatActivity {
         };
         // If the access token is available already assign it.
         //accessToken = AccessToken.getCurrentAccessToken();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
-
     @Override
     public void onResume() {
         super.onResume();
-        Profile profile = Profile.getCurrentProfile();
-        displayWelcomeMessage(profile);
-
-
     }
-
     public View onCreateView(
             LayoutInflater inflater,
             ViewGroup container,
             Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.loginscreen, container, false);
         LoginButton loginButton = (LoginButton) view.findViewById(R.id.login_button);
-        loginButton = (LoginButton) view.findViewById(R.id.login_button);
         loginButton.setReadPermissions("user_friends");
-        // If using in a fragment
-
-        // Other app specific specialization
-
         // Callback registration
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 AccessToken accessToken = loginResult.getAccessToken();
                 Profile profile = Profile.getCurrentProfile();
-                displayWelcomeMessage(profile);
+
             }
 
             @Override
@@ -150,7 +144,7 @@ public class LoginscreenActivity extends AppCompatActivity {
             }
         });
 
-        return inflater.inflate(R.layout.loginscreen, container, false);
+        return view;
     }
 
     @Override

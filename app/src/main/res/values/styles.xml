@@ -3,9 +3,23 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <style name="FacebookLoginButtonStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:paddingTop">30sp</item>
+        <item name="android:paddingBottom">30sp</item>
+        <item name="android:paddingLeft">55sp</item>
+        <item name="android:paddingRight">55sp</item>
+    </style>
+    <style name="IconLarmStyle">
+        <item name="android:layout_marginTop">35dp</item>
+        <item name="android:layout_marginBottom">35dp</item>
+        <item name="android:paddingTop">25sp</item>
+        <item name="android:paddingBottom">25sp</item>
+    </style>
+    <style name="AppName">
+        <item name="android:paddingTop">30sp</item>
+        <item name="android:paddingBottom">30sp</item>
+    </style>
 </resources>
