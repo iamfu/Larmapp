@@ -6,9 +6,12 @@ package com.iamfu.larmapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
+
+import com.iamfu.larmapp.databinding.SplashscreenBinding;
 
 
 public class SplashScreenActivity extends Activity {
@@ -17,10 +20,12 @@ public class SplashScreenActivity extends Activity {
     private long delay_times;
     private long times = 3000L;
 
+    private SplashscreenBinding binding;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.splashscreen);
+        binding = DataBindingUtil.setContentView(this, R.layout.splashscreen);
         handler = new Handler();
 
         runnable = new Runnable() {

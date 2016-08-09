@@ -1,8 +1,16 @@
 package com.iamfu.larmapp;
 
+import android.content.Intent;
+
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,80 +21,75 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import com.iamfu.larmapp.databinding.HomeBinding;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class HomeActivity extends AppCompatActivity {
+
+    private HomeBinding binding;
+
+    private int[] tabIcons = {
+            R.drawable.ic_tab_larm,
+            R.drawable.ic_tab_dictionary,
+            R.drawable.ic_tab_lesson,
+            R.drawable.ic_tab_menu
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        binding = DataBindingUtil.setContentView(this, R.layout.home);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        setupViewPager(binding.viewpager);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        binding.tabs.setupWithViewPager(binding.viewpager);
+        setupTabIcons();
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+    private void setupTabIcons() {
+        binding.tabs.getTabAt(0).setIcon(tabIcons[0]);
+        binding.tabs.getTabAt(1).setIcon(tabIcons[1]);
+        binding.tabs.getTabAt(2).setIcon(tabIcons[2]);
+        binding.tabs.getTabAt(3).setIcon(tabIcons[3]);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
-        return true;
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFrag(new LarmFragment(), "Larm");
+        adapter.addFrag(new LarmFragment(), "Dictionary");
+        adapter.addFrag(new LarmFragment(), "Lesson");
+        adapter.addFrag(new LarmFragment(), "Menu");
+        viewPager.setAdapter(adapter);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
         }
 
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_larm) {
-            // Handle the camera action
-        } else if (id == R.id.nav_dictionary) {
-
-        } else if (id == R.id.nav_lesson) {
-
-        } else if (id == R.id.nav_voiceRecord) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFrag(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 }

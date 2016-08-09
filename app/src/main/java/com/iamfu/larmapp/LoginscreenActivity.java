@@ -1,6 +1,7 @@
 package com.iamfu.larmapp;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.iamfu.larmapp.databinding.LoginscreenBinding;
 
 import java.util.Arrays;
 
@@ -27,7 +29,8 @@ import java.util.Arrays;
  */
 public class LoginscreenActivity extends AppCompatActivity {
 
-
+    private LoginscreenBinding binding;
+    
     private TextView mTextDetails;
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
@@ -54,9 +57,6 @@ public class LoginscreenActivity extends AppCompatActivity {
         }
     };
 
-    public LoginscreenActivity() {
-    }
-
     private void displayWelcomeMessage(Profile profile) {
         if (profile != null) {
             mTextDetails.setText("Welcome " + profile.getName());
@@ -67,7 +67,7 @@ public class LoginscreenActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(this.getApplicationContext());
-        setContentView(R.layout.loginscreen);
+        binding = DataBindingUtil.setContentView(this, R.layout.loginscreen);
 
         mTextDetails = (TextView) findViewById(R.id.welcomeText);
 
@@ -132,6 +132,7 @@ public class LoginscreenActivity extends AppCompatActivity {
         View view = inflater.inflate(R.layout.loginscreen, container, false);
         LoginButton loginButton = (LoginButton) view.findViewById(R.id.login_button);
         loginButton.setReadPermissions("user_friends");
+
         // If using in a fragment
 
         // Other app specific specialization
