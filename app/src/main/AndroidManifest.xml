@@ -7,10 +7,9 @@
         android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -39,11 +38,55 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".LoginscreenActivity"></activity>
+        <activity android:name=".LoginscreenActivity" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ContentActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ScoreResultActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".TranslateActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <dependency>
+            <groupId>
+                com.firebase
+            </groupId>
+
+            <artifactId>
+                firebase-client-android
+            </artifactId>
+
+            <version>
+                [2.5.2,)
+            </version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.basistech.rosette</groupId>
+            <artifactId>rosette-api</artifactId>
+            <version>1.4.18</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.basistech</groupId>
+            <artifactId>common-api</artifactId>
+            <version>36.0.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.basistech</groupId>
+            <artifactId>adm-model</artifactId>
+            <version>2.1.2</version>
+        </dependency>
+
 
     </application>
 

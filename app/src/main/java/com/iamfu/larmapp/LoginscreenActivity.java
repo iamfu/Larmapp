@@ -1,5 +1,6 @@
 package com.iamfu.larmapp;
 
+
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -30,11 +31,15 @@ import java.util.Arrays;
 public class LoginscreenActivity extends AppCompatActivity {
 
     private LoginscreenBinding binding;
+
     
     private TextView mTextDetails;
+    private TextView mStatusTextView;
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
     private ProfileTracker profileTracker;
+
+
     private FacebookCallback mCallback = new FacebookCallback<LoginResult>() {
         @Override
         public void onSuccess(LoginResult loginResult) {
@@ -69,7 +74,7 @@ public class LoginscreenActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         binding = DataBindingUtil.setContentView(this, R.layout.loginscreen);
 
-        mTextDetails = (TextView) findViewById(R.id.welcomeText);
+        //mTextDetails = (TextView) findViewById(R.id.welcomeText);
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -93,7 +98,7 @@ public class LoginscreenActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancel() {
-                        // App code
+
                     }
 
                     @Override
@@ -130,7 +135,7 @@ public class LoginscreenActivity extends AppCompatActivity {
             Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.loginscreen, container, false);
-        LoginButton loginButton = (LoginButton) view.findViewById(R.id.login_button);
+        LoginButton loginButton = (LoginButton) view.findViewById(R.id.button_login);
         loginButton.setReadPermissions("user_friends");
 
         // If using in a fragment
@@ -175,4 +180,13 @@ public class LoginscreenActivity extends AppCompatActivity {
         accessTokenTracker.stopTracking();
         profileTracker.stopTracking();
     }
+
+
+    public void onClick(View view) {
+        Intent intent = new Intent(LoginscreenActivity.this, HomeActivity.class);
+        startActivity(intent);
+
+    }
+
+
 }

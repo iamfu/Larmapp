@@ -2,14 +2,28 @@
     <string name="app_name">Larm</string>
     <string name="facebook_app_id">1102029166524030</string>
 
-    <!-- Nav Drawer Menu Items -->
-    <string-array name="nav_drawer_items">
-        <item>Home</item>
-        <item>Find People</item>
-        <item>Photos</item>
-        <item>Communities</item>
-        <item>Pages</item>
-        <item>What\'s Hot</item>
+    <string name="hello">มาเริ่มแปลกันเลย!</string>>
+
+    <string name="lang_alert">การตั้งค่าภาษาไม่ถูกต้อง! กรุณาตั้งค่าภาษาให้ต่างกัน</string>
+
+    <string name="larm_th">แปล</string>
+    <string name="dictionary_th">คำศัพท์</string>
+    <string name="lesson_th">บทเรียน</string>
+    <string name="menu_th">เมนู</string>
+
+    <string name="larm_en">แปล</string>
+    <string name="dictionary_en">คำศัพท์</string>
+    <string name="lesson_en">บทเรียน</string>
+    <string name="menu_en">เมนู</string>
+
+    <string-array name="inputLang">
+        <item>ภาษาอังกฤษ</item>
+        <item>ภาษาไทย</item>
+    </string-array>
+
+    <string-array name="outputLang">
+        <item>ภาษาไทย</item>
+        <item>ภาษาอังกฤษ</item>
     </string-array>
 
     <!-- Nav Drawer List Item Icons -->
@@ -27,5 +41,34 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_translate">TranslateActivity</string>
+    <string name="title_activity_answer">AnswerActivity</string>
 
+    <string-array name="characters">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+        <item>J</item>
+        <item>K</item>
+        <item>L</item>
+        <item>M</item>
+        <item>N</item>
+        <item>O</item>
+        <item>P</item>
+        <item>Q</item>
+        <item>R</item>
+        <item>S</item>
+        <item>T</item>
+        <item>U</item>
+        <item>V</item>
+        <item>W</item>
+        <item>X</item>
+        <item>Y</item>
+        <item>Z</item>
+    </string-array>
 </resources>

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.iamfu.larmapp.TranslateActivity">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:elevation="10dp">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:id="@+id/conLayout"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/view"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/tabBackground"
+            android:elevation="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/inputText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/translateText"
+                android:layout_below="@+id/view"
+                android:layout_gravity="center|center_vertical"
+                android:layout_margin="10dp"
+                android:autoText="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="คำพูด"
+                android:textColor="@color/tabText"
+                android:textSize="20dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/white"
+                android:elevation="3dp" />
+
+            <LinearLayout
+                android:id="@+id/plainLayout"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignBottom="@+id/textView2"
+                android:layout_alignParentStart="true"
+                android:background="@color/tab"
+                android:elevation="5dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/textSound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/translateText"
+                    android:layout_below="@+id/translateText"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@null"
+                    android:src="@drawable/speaker" />
+
+                <TextView
+                    android:id="@+id/enPlainText"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_alignStart="@+id/translateText"
+                    android:layout_below="@+id/view"
+                    android:autoText="true"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingRight="15dp"
+                    android:text="Hello how are you today  miss you so much edok"
+                    android:textColor="@color/tabText"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@android:color/white" />
+
+            <TextView
+                android:id="@+id/outputText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/translateText"
+                android:layout_below="@+id/view"
+                android:layout_gravity="center|center_vertical"
+                android:layout_margin="10dp"
+                android:autoText="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="คำแปล"
+                android:textColor="@color/tabText"
+                android:textSize="20dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/white"
+                android:elevation="3dp" />
+
+            <LinearLayout
+                android:id="@+id/translateLayout"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignBottom="@+id/textView2"
+                android:layout_alignParentStart="true"
+                android:background="@color/tab"
+                android:elevation="5dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/textSoundTranslate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/translateText"
+                    android:layout_below="@+id/translateText"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@null"
+                    android:src="@drawable/speaker" />
+
+                <TextView
+                    android:id="@+id/enTranslateText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/translateLayout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingRight="15dp"
+                    android:text="Translating...."
+                    android:textColor="@color/tabText"
+                    android:textSize="20dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/conLayout"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@android:color/darker_gray"
+            android:elevation="3dp" />
+
+        <LinearLayout
+            android:id="@+id/sugLayout"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/conLayout"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/tabBackground"
+            android:elevation="5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/suggestLayout"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/conLayout"
+                android:background="@color/tabAnswer"
+                android:elevation="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/translateText"
+                    android:layout_gravity="center|center_vertical"
+                    android:layout_margin="10dp"
+                    android:autoText="true"
+                    android:text="คำตอบแนะนำ"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/white"
+                    android:elevation="3dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_alignBottom="@+id/textView2"
+                    android:layout_alignParentStart="true"
+                    android:background="@color/tabIndicator"
+                    android:elevation="5dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/textSoundSuggestEn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@+id/translateText"
+                        android:layout_below="@+id/translateText"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@null"
+                        android:src="@drawable/speaker" />
+
+                    <TextView
+                        android:id="@+id/suggestText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/translateLayout"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:paddingRight="15dp"
+                        android:text="Please Wait...."
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/suggestLayoutTh"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/conLayout"
+                android:layout_marginBottom="10dp"
+                android:background="@color/tabBackground"
+                android:elevation="5dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/suggestionTh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/translateText"
+                    android:layout_gravity="left"
+                    android:layout_margin="10dp"
+                    android:autoText="true"
+                    android:text="คำแปล"
+                    android:textColor="@color/tabText"
+                    android:textSize="20dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_alignBottom="@+id/textView2"
+                    android:layout_alignParentStart="true"
+                    android:elevation="5dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/textSoundSuggestTh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@+id/translateText"
+                        android:layout_below="@+id/translateText"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@null"
+                        android:src="@drawable/speaker" />
+
+                    <TextView
+                        android:id="@+id/suggestTextTh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/translateLayout"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:paddingRight="15dp"
+                        android:text="Please Wait...."
+                        android:textColor="@color/tabText"
+                        android:textSize="20dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

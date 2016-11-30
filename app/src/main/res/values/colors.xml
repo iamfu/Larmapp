@@ -2,7 +2,17 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#c8ffd92f</color>
+
+    <color name="tabText">#FFFFFF</color>
+    <color name="selectedText">#c8fff926</color>
+    <color name="tabBackground">#3E52B4</color>
+    <color name="tab">#75baff</color>
+    <color name="tabAnswer">#c8ffd92f</color>
+    <color name="tabIndicator">#c7fff938</color>
+
+    <color name="translateBox">#77b3d4</color>
+    <color name="lessonbox">#2c3e50</color>
 
     <color name="list_item_title">#fff</color>
     <color name="list_background">#303030</color>
